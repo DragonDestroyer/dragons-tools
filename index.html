@@ -1,60 +1,135 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Dragons Tools - TimeStretch Player</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dragons Tools — TimeStretch Player</title>
+  <style>
+    :root {
+      --bg: #121212;
+      --panel: #1e1e1e;
+      --accent: #6eff86;
+      --accent2: #76ff72;
+      --text: #eee;
+      --muted: #aaa;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    h1 {
+      font-size: 2.6rem;
+      margin: 0 0 8px;
+      background: linear-gradient(90deg, #92ff62, #69ff78, #74ff94);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin: 0;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 32px;
+      max-width: 640px;
+      width: 100%;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .download-btn {
+      display: inline-block;
+      background: linear-gradient(180deg, #8aff66, #6eff86);
+      color: #111;
+      font-weight: 700;
+      font-size: 1.15rem;
+      padding: 14px 36px;
+      border-radius: 8px;
+      text-decoration: none;
+      margin: 16px 0;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(110, 255, 134, 0.35);
+    }
+    .note {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 8px;
+    }
+    ul {
+      text-align: left;
+      line-height: 1.7;
+      padding-left: 20px;
+    }
+    code {
+      background: #2a2a2a;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    a { color: var(--accent); }
+    footer {
+      margin-top: 40px;
+      color: #666;
+      font-size: 0.85rem;
+    }
+  </style>
 </head>
 <body>
-  <div class="top-bar">
-    <button id="openFile">Open Track</button>
-    <button id="openFolder">Open Folder (Playlist)</button>
-    <button id="settings">Settings</button>
-    <button id="help">Help</button>
+  <header>
+    <h1>Dragons Tools</h1>
+    <p class="subtitle">Desktop TimeStretch Player with playlist support</p>
+  </header>
+
+  <div class="card">
+    <p>A standalone desktop version inspired by <a href="https://29a.ch/timestretch/" target="_blank">29a.ch/timestretch</a>. Load single tracks or whole folders and play them sequentially with stretch, pitch, and volume controls — no browser required.</p>
+
+    <div style="text-align:center;">
+      <a class="download-btn" href="https://github.com/DragonDestroyer/dragons-tools" target="_blank">Download / View on GitHub</a>
+      <p class="note">Source code is available now. Build the Windows EXE yourself with the steps below, or check Releases for pre-built files when available.</p>
+    </div>
+
+    <h3>Features</h3>
+    <ul>
+      <li>Similar UI and feel to the original TimeStretch player</li>
+      <li>Open a single track or an entire folder as a playlist</li>
+      <li>Sequential playback of songs from a folder</li>
+      <li>Stretch, Pitch, Tune, and Volume controls</li>
+      <li>Runs as a native Windows EXE (Electron)</li>
+    </ul>
+
+    <h3>Build the EXE</h3>
+    <ol>
+      <li>Clone the repo and open a terminal in the folder</li>
+      <li>Install dependencies: <code>npm install</code></li>
+      <li>Run in development: <code>npm start</code></li>
+      <li>Build the installer: <code>npm run dist</code></li>
+    </ol>
+    <p>The built EXE will appear in the <code>dist/</code> folder.</p>
+
+    <p style="margin-top:24px; font-size:0.9rem; color:#888;">
+      Current stretch uses playbackRate (affects pitch). True independent time-stretching can be added later with a library such as SoundTouch.
+    </p>
   </div>
 
-  <div class="player-header">
-    <h1>TimeStretch Player</h1>
-    <div class="now-playing" id="nowPlaying">No track loaded</div>
-    <div class="controls">
-      <button id="play">▶</button>
-      <button id="stop">■</button>
-      <button id="prev">⏮</button>
-      <button id="next">⏭</button>
-      <button id="loop">Loop</button>
-    </div>
-    <div class="volume">
-      <label>VOLUME</label>
-      <input type="range" id="volume" min="-60" max="0" value="-6" step="1">
-      <span id="volLabel">-6 dB</span>
-    </div>
-  </div>
-
-  <div class="waveform" id="waveform">
-    <!-- Simple waveform placeholder -->
-    <div class="playhead" id="playhead"></div>
-  </div>
-
-  <div class="stretcher">
-    <div class="knob-group">
-      <label>STRETCH</label>
-      <input type="range" id="stretch" min="0.25" max="2" value="1" step="0.01">
-      <span id="stretchLabel">1.00 ×</span>
-    </div>
-    <div class="knob-group">
-      <label>PITCH</label>
-      <input type="range" id="pitch" min="-12" max="12" value="0" step="1">
-      <span id="pitchLabel">0 Semi</span>
-    </div>
-    <div class="knob-group">
-      <label>TUNE</label>
-      <input type="range" id="tune" min="-50" max="50" value="0" step="1">
-      <span id="tuneLabel">0 Cent</span>
-    </div>
-  </div>
-
-  <div class="playlist" id="playlist"></div>
-
-  <script src="renderer.js"></script>
+  <footer>
+    MIT License &middot; Independent recreation with playlist features
+  </footer>
 </body>
 </html>
