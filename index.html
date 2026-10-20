@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dragons Tools - TimeStretch Player</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="top-bar">
+    <button id="openFile">Open Track</button>
+    <button id="openFolder">Open Folder (Playlist)</button>
+    <button id="settings">Settings</button>
+    <button id="help">Help</button>
+  </div>
+
+  <div class="player-header">
+    <h1>TimeStretch Player</h1>
+    <div class="now-playing" id="nowPlaying">No track loaded</div>
+    <div class="controls">
+      <button id="play">▶</button>
+      <button id="stop">■</button>
+      <button id="prev">⏮</button>
+      <button id="next">⏭</button>
+      <button id="loop">Loop</button>
+    </div>
+    <div class="volume">
+      <label>VOLUME</label>
+      <input type="range" id="volume" min="-60" max="0" value="-6" step="1">
+      <span id="volLabel">-6 dB</span>
+    </div>
+  </div>
+
+  <div class="waveform" id="waveform">
+    <!-- Simple waveform placeholder -->
+    <div class="playhead" id="playhead"></div>
+  </div>
+
+  <div class="stretcher">
+    <div class="knob-group">
+      <label>STRETCH</label>
+      <input type="range" id="stretch" min="0.25" max="2" value="1" step="0.01">
+      <span id="stretchLabel">1.00 ×</span>
+    </div>
+    <div class="knob-group">
+      <label>PITCH</label>
+      <input type="range" id="pitch" min="-12" max="12" value="0" step="1">
+      <span id="pitchLabel">0 Semi</span>
+    </div>
+    <div class="knob-group">
+      <label>TUNE</label>
+      <input type="range" id="tune" min="-50" max="50" value="0" step="1">
+      <span id="tuneLabel">0 Cent</span>
+    </div>
+  </div>
+
+  <div class="playlist" id="playlist"></div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

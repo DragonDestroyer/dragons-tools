@@ -1,0 +1,27 @@
+{
+  "name": "dragons-tools",
+  "version": "1.0.0",
+  "description": "Desktop TimeStretch-style audio player with playlist (inspired by 29a.ch/timestretch)",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "author": "DragonDestroyer",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "com.dragons.tools",
+    "productName": "Dragons Tools - TimeStretch Player",
+    "win": {
+      "target": "nsis"
+    },
+    "files": [
+      "**/*",
+      "!node_modules"
+    ]
+  }
+}

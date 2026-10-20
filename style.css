@@ -1,0 +1,90 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #1e1e1e;
+  color: #eee;
+  overflow: hidden;
+}
+.top-bar {
+  background: #2a2a2a;
+  padding: 8px;
+  display: flex;
+  gap: 10px;
+}
+.top-bar button {
+  background: #333;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.player-header {
+  background: linear-gradient(180deg, #555 0%, #333 100%);
+  padding: 20px;
+  text-align: center;
+}
+.now-playing {
+  background: #111;
+  padding: 10px;
+  margin: 10px auto;
+  width: 60%;
+  border-radius: 4px;
+}
+.controls button {
+  background: #222;
+  color: white;
+  border: 1px solid #444;
+  width: 40px;
+  height: 40px;
+  margin: 0 4px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.volume {
+  display: inline-block;
+  margin-left: 20px;
+}
+.waveform {
+  height: 150px;
+  background: #111;
+  position: relative;
+  margin: 10px;
+  border: 1px solid #333;
+  background-image: linear-gradient(90deg, transparent 49%, #0f0 50%, transparent 51%);
+  background-size: 4px 100%;
+}
+.playhead {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: yellow;
+  left: 0;
+}
+.stretcher {
+  display: flex;
+  justify-content: space-around;
+  background: #2a2a2a;
+  padding: 20px;
+}
+.knob-group {
+  text-align: center;
+}
+.knob-group input[type=range] {
+  width: 120px;
+}
+.playlist {
+  height: 120px;
+  overflow-y: auto;
+  background: #111;
+  margin: 10px;
+  padding: 5px;
+  font-size: 12px;
+}
+.playlist div {
+  padding: 2px 5px;
+  cursor: pointer;
+}
+.playlist div:hover, .playlist div.active {
+  background: #333;
+}
