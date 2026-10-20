@@ -15,7 +15,7 @@ function createWindow() {
     title: 'Dragons Tools - TimeStretch Player'
   });
 
-  mainWindow.loadFile('index.html');
+  mainWindow.loadFile('player.html');
 }
 
 app.whenReady().then(createWindow);
